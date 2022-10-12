@@ -31,7 +31,7 @@ class V3(object):
         )
 
     def __mul__(self, other):
-        if (type(other) == int) or (type(other) == float):
+        if (type(other) == int) or (type(other) == float64):
             return V3(
                 self.x * other,
                 self.y * other,

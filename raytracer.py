@@ -1,4 +1,7 @@
+from cmath import pi, tan
 from lib import *
+import math
+from Vector import *
 
 class Raytracer(object):
     def __init__(self, width, height):
@@ -16,16 +19,38 @@ class Raytracer(object):
         ]
         
     def point(self, x, y, color = None): 
-        if (y > 0 and y < self.height and x > 0 and x < self.width):
+        if (y >= 0 and y < self.height and x >= 0 and x < self.width):
             self.framebuffer[y][x] = color or self.current_color
+    
+    def render(self):
+        
+        fov = int(pi / 2)
+        aspect_ratio = self.width / self.height
+        tana = tan(fov / 2)
+        
+        
+        for y in range(self.height):
+            for x in range(self.width):
+                
+                i = (2 * (x + 0.5) / self.width - 1) * aspect_ratio * tana
+                j = (1 - (2 * (y + 0.5) / self.height)) * tana
+                
+                direction = V3(i, j, -1).norm()
+                origin = V3(0, 0, 0)
+                
+                
+                c = self.raycast(origin, direction)
+                
+                self.point(x, y, c)
     
     def write(self, filename):
         writeBMP(filename, self.width, self.height, self.framebuffer)
         
-    def render(self):
-        self.write('render.bmp')
-        
+    def raycast(self, origin, direction):
+        return color_select(255, 0, 0)
 
 render = Raytracer(800, 600)
 render.point(100, 100)
 render.render()
+
+render.write('r.bmp')
