@@ -2,6 +2,7 @@ from cmath import pi, tan
 from lib import *
 import math
 from Vector import *
+from Sphere import *
 
 class Raytracer(object):
     def __init__(self, width, height):
@@ -9,6 +10,7 @@ class Raytracer(object):
         self.height = height
         self.clear_color = color_select(0, 0, 0)
         self.current_color = color_select(255, 255, 255)
+        self.scene = []
         self.clear()
         
     def clear(self):    
@@ -47,9 +49,21 @@ class Raytracer(object):
         writeBMP(filename, self.width, self.height, self.framebuffer)
         
     def raycast(self, origin, direction):
-        return color_select(255, 0, 0)
+        
+        for o in self.scene:
+        
+            if(o.ray_intersect(origin, direction)):
+                return color_select(255, 0, 0)
+            else:
+                return self.clear_color
+        
 
 render = Raytracer(800, 600)
+render.scene = [
+    Sphere(V3(-3, 0, -16), 2),
+    Sphere(V3(-3, 0, -5), 7),
+]
+
 render.point(100, 100)
 render.render()
 
