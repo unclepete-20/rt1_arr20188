@@ -1,6 +1,5 @@
 from cmath import pi, tan
 from lib import *
-import math
 from Vector import *
 from Sphere import *
 
@@ -54,17 +53,16 @@ class Raytracer(object):
         
             if(o.ray_intersect(origin, direction)):
                 return color_select(255, 0, 0)
-            else:
-                return self.clear_color
+        
+        return self.clear_color
         
 
-render = Raytracer(800, 600)
+render = Raytracer(600, 600)
 render.scene = [
-    Sphere(V3(-3, 0, -16), 2),
-    Sphere(V3(-3, 0, -5), 7),
+    Sphere(V3(-3, -2, -20), 2),
+    Sphere(V3(-8, -8, -10), 8)
 ]
 
-render.point(100, 100)
 render.render()
 
 render.write('r.bmp')
