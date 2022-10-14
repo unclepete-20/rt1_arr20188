@@ -1,7 +1,10 @@
+from lib import *
+
 class Sphere(object):
-    def __init__(self, center, radius):
+    def __init__(self, center, radius, color = None):
         self.center = center
         self.radius = radius
+        self.color = color
         
     def ray_intersect(self, origin, direction):
         
@@ -26,3 +29,9 @@ class Sphere(object):
             return False
         
         return True
+    
+    def get_color(self):
+        if(self.color == None):
+            return color_select(255, 255, 255)
+        else:
+            return self.color

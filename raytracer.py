@@ -52,7 +52,7 @@ class Raytracer(object):
         for o in self.scene:
         
             if(o.ray_intersect(origin, direction)):
-                return color_select(255, 0, 0)
+                return o.get_color()
         
         return self.clear_color
         
