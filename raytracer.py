@@ -63,10 +63,32 @@ ORANGE = color_select(255, 154, 0)
 
 render = Raytracer(600, 600)
 render.scene = [
-    Sphere(V3(-3, -2, -20), 2, WHITE),
-    Sphere(V3(-8, -8, -10), 8, BLACK)
+    # Eyes
+    Sphere(V3(0.6, -7, -20), 0.4, BLACK),
+    Sphere(V3(-0.6, -7, -20), 0.4, BLACK),
+    
+    # Nose
+    Sphere(V3(0, -6, -20), 0.4, ORANGE),
+    
+    # Mouth
+    Sphere(V3(0, -4.7, -20), 0.2, BLACK),
+    Sphere(V3(0.6, -4.9, -20), 0.2, BLACK),
+    Sphere(V3(-0.6, -4.9, -20), 0.2, BLACK),
+    Sphere(V3(1.2, -5.3, -20), 0.2, BLACK),
+    Sphere(V3(-1.2, -5.3, -20), 0.2, BLACK),
+    
+    # Dots
+    Sphere(V3(0, -3, -20), 0.4, BLACK),
+    Sphere(V3(0, -1.5, -20), 0.4, BLACK),
+    Sphere(V3(0, 0, -20), 0.4, BLACK),
+    
+    # Body
+    Sphere(V3(0, -6, -20), 2, WHITE),
+    Sphere(V3(0, -1.7, -20), 3, WHITE),
+    Sphere(V3(0, 3.5, -20), 4, WHITE)
+    
 ]
 
 render.render()
 
-render.write('r.bmp')
+render.write('snowman.bmp')
