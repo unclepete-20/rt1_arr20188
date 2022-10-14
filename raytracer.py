@@ -7,7 +7,7 @@ class Raytracer(object):
     def __init__(self, width, height):
         self.width = width
         self.height = height
-        self.clear_color = color_select(0, 0, 0)
+        self.clear_color = color_select(252, 96, 143)
         self.current_color = color_select(255, 255, 255)
         self.scene = []
         self.clear()
@@ -57,10 +57,14 @@ class Raytracer(object):
         return self.clear_color
         
 
+BLACK = color_select(0, 0, 0)
+WHITE = color_select(255, 255, 255)
+ORANGE = color_select(255, 154, 0)
+
 render = Raytracer(600, 600)
 render.scene = [
-    Sphere(V3(-3, -2, -20), 2),
-    Sphere(V3(-8, -8, -10), 8)
+    Sphere(V3(-3, -2, -20), 2, WHITE),
+    Sphere(V3(-8, -8, -10), 8, BLACK)
 ]
 
 render.render()
